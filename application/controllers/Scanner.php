@@ -21,7 +21,7 @@ class Scanner extends CI_Controller {
 	function __construct()
  	{
  		parent::__construct();
- 		$this->load->model('Mscanner');
+ 		$this->load->model('ScannerModel');
  		$this->load->helper('form','url_helper');
  	}
 
@@ -33,9 +33,9 @@ class Scanner extends CI_Controller {
 		$data['status'] = "none";
 		$data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.idKehadiran DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
  		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('vscanner',$data);
+			$this->load->view('Scanner',$data);
 		}else {
-			$this->Mscanner->set_kehadiran();
+			$this->ScannerModel->set_kehadiran();
 		}
  	}
 

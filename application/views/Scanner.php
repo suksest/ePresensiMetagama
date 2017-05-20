@@ -1,4 +1,4 @@
-<?php $this->load->view('header') ?>
+<?php $this->load->view('Header'); ?>
 <div class="container col-md-12">
     <div class="row">
         <p style="font-weight: bold; color: blue; ;font-size: 3em; text-align: center;">#ComeTo<span style="color: orange;">POLBAN</span></p>
@@ -70,4 +70,4 @@
         </div> <!--end of detailscan-->
     </div> <!--end of row-->
 </div> <!--end of container-->
-<?php $this->load->view('footer') ?>
+<?php $this->load->view('Footer'); ?>

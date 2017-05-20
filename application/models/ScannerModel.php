@@ -1,5 +1,5 @@
 <?php
-    class Mscanner extends CI_Model
+    class ScannerModel extends CI_Model
     {
         function __construct(){
             parent::__construct();
@@ -20,7 +20,7 @@
                 // echo "gak ada nim ".$id;
                 $data['status'] = "false";
                 $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.idKehadiran DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
-                $this->load->view('vscanner', $data);
+                $this->load->view('Scanner', $data);
             }else{
                 $kehadiran = array(
                     'nim' => $mentee->nim,
@@ -31,7 +31,7 @@
                 $this->db->insert('kehadiran', $kehadiran);
                 $data['status'] = "true";
                 $data['query'] = $this->get_last_kehadiran();
-                $this->load->view('vscanner', $data);
+                $this->load->view('Scanner', $data);
             }
             // $result = array_merge($data, $status);
             // print_r($result);
