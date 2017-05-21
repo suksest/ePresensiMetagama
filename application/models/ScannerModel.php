@@ -19,6 +19,7 @@
             if ($mentee == NULL) {
                 // echo "gak ada nim ".$id;
                 $data['status'] = "false";
+                $data['title'] = "Scan | ePresensi Metagama POLBAN";
                 $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
                 $this->load->view('Scanner', $data);
             }else{
@@ -38,6 +39,7 @@
                     $data['status'] = "already";
                     $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
                 }
+                $data['title'] = "Scan | ePresensi Metagama POLBAN";
                 $this->load->view('Scanner', $data);
             }
         }

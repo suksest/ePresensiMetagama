@@ -31,6 +31,7 @@ class Scanner extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('nim', 'NIM', 'required');
 		$data['status'] = "none";
+		$data['title'] = "Scan | ePresensi Metagama POLBAN";
 		$data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
  		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('Scanner',$data);

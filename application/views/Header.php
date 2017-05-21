@@ -18,7 +18,7 @@
         // };
         // detail.open('GET', '')
     </script> -->
-    <title>tes</title>
+    <title><?php echo $title ?></title>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-static-top">
