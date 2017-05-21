@@ -19,15 +19,17 @@
             if ($mentee == NULL) {
                 // echo "gak ada nim ".$id;
                 $data['status'] = "false";
-                $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.idKehadiran DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
+                $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
                 $this->load->view('Scanner', $data);
             }else{
                 $kehadiran = array(
                     'nim' => $mentee->nim,
+                    'idKegiatan' => 2,
                     'waktuDatang' => date("Y-m-d H:i:s"),
                     // 'waktuPulang' => NULL,
                     'keterangan' => 'H'
                 );
+                //$this->db->query("SELECT * FROM kehadiran, mentee where kehadiran.nim")
                 $this->db->insert('kehadiran', $kehadiran);
                 $data['status'] = "true";
                 $data['query'] = $this->get_last_kehadiran();
@@ -38,7 +40,7 @@
         }
 
         function get_last_kehadiran(){
-            $query = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.idKehadiran DESC LIMIT 1");
+            $query = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1");
             // print_r($query);
             return $query->result();
         }
