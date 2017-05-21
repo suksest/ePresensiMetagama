@@ -29,14 +29,17 @@
                     // 'waktuPulang' => NULL,
                     'keterangan' => 'H'
                 );
-                //$this->db->query("SELECT * FROM kehadiran, mentee where kehadiran.nim")
-                $this->db->insert('kehadiran', $kehadiran);
-                $data['status'] = "true";
-                $data['query'] = $this->get_last_kehadiran();
+                $check = $this->db->get_where('kehadiran', array('nim' => $kehadiran['nim'], 'idKegiatan' => $kehadiran['idKegiatan']))->num_rows();
+                if ($check==0) {
+                    $data['status'] = "true";
+                    $this->db->insert('kehadiran', $kehadiran);
+                    $data['query'] = $this->get_last_kehadiran();
+                } else {
+                    $data['status'] = "already";
+                    $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
+                }
                 $this->load->view('Scanner', $data);
             }
-            // $result = array_merge($data, $status);
-            // print_r($result);
         }
 
         function get_last_kehadiran(){
@@ -45,22 +48,4 @@
             return $query->result();
         }
     }
-    // if ($mentee==NULL) {
-    //     $data = array('nim' => NULL);
-    //     echo "gak masuk";
-    // }else{
-    //     //dibaris ini ganti dengan query retrieve waktu kedatangan
-    //     $waktuDatang = date("Y-m-d H:i:s");
-    //     if ($waktuDatang ) {
-    //         # code...
-    //     }
-    //     $data = array(
-    //         'nim' => $mentee->nim,
-    //         'waktuDatang' => date("Y-m-d H:i:s"),
-    //         'keterangan' => 'H'
-    //     );
-    //     $this->db->insert('kehadiran', $data);
-    //     $kehadiran = $this->get_last_kehadiran();
-    //     $this->load->view('vscanner', $kehadiran);
-    // }
 ?>

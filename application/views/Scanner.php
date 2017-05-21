@@ -26,6 +26,10 @@
                         <div class="alert alert-danger" role="alert" style="text-align:center;">
                             <strong>Gagal! </strong>Barcode tidak ditemukan.
                         </div>
+                    <?php elseif(strcmp($status,"already")==0): ?>
+                        <div class="alert alert-warning" role="alert" style="text-align:center;">
+                            <strong>Terimakasih :) </strong>Kehadiran sudah dicatat.
+                        </div>
                     <?php elseif(strcmp($status,"true")==0): ?>
                         <div class="alert alert-success" role="alert" style="text-align:center;">
                             <strong>Berhasil! </strong>Data kehadiran berhasil disimpan.
@@ -58,6 +62,8 @@
                         <p class="text-info"><?php echo "Silahkan pindai barcode terlebih dahulu"; ?></p>
                     <?php elseif (strcmp($status,"false")==0): ?>
                         <p class="text-danger"><?php echo "Barcode tidak terdaftar"; ?></p>
+                    <?php elseif (strcmp($status,"already")==0): ?>
+                        <p class="text-warning"><?php echo "Kehadiran sudah dicatat"; ?></p>
                     <?php elseif (strcmp($status,"true")==0): ?>
                         <p><?php echo $nim; ?></p>
                         <p><?php echo $nama; ?></p>
