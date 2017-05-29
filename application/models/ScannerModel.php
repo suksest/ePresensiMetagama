@@ -17,10 +17,9 @@
             $mentee = $this->get_mentee($id);
             date_default_timezone_set("Asia/Jakarta");
             if ($mentee == NULL) {
-                // echo "gak ada nim ".$id;
                 $data['status'] = "false";
                 $data['title'] = "Scan | ePresensi Metagama POLBAN";
-                $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
+                //$data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->row(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
                 $this->load->view('Scanner', $data);
             }else{
                 $kehadiran = array(
@@ -37,7 +36,13 @@
                     $data['query'] = $this->get_last_kehadiran();
                 } else {
                     $data['status'] = "already";
-                    $data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
+                    $condition = "kehadiran.nim =" . "'" . $kehadiran['nim'] . "' AND kehadiran.nim = mentee.nim AND kehadiran.idKegiatan = 2";
+                    $this->db->select('*');
+                    $this->db->from('kehadiran,mentee');
+                    $this->db->where($condition);
+                    $this->db->limit(1);
+                    $q = $this->db->get();
+                    $data['query'] = $q->result();
                 }
                 $data['title'] = "Scan | ePresensi Metagama POLBAN";
                 $this->load->view('Scanner', $data);

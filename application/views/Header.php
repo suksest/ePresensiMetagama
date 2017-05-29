@@ -8,17 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/navbar.css"); ?>" />
     <script type="text/javascript" src="<?php echo base_url("assets/js/time.js"); ?>"></script>
-    <!-- <script>
-        // var detail = new XMLHttpRequest();
-        // detail.onreadystatechange = function(){
-        //     if (detail.readyState === 4) {
-        //         document.getElementsByClassName('detailpresensi').innerHTML = detail.responseText;
-        //     }
-        // };
-        // detail.open('GET', '')
-    </script> -->
-    <title><?php echo $title ?></title>
+    <title><?php echo $title; ?></title>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-static-top">
@@ -36,13 +28,25 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Home</a></li>
-            <li class="active"><a href="<?echo base_url(); ?>">Scan</a></li>
+            <li><a href="<?echo base_url(); ?>">Home</a></li>
+            <li class="active"><a href="<?echo base_url("index.php/Scanner"); ?>">Scan</a></li>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li>
               <a href="#"><i class="glyphicon glyphicon-time"></i> <span id="server_clock"></span></a>
             </li>
+            <?php if ($this->session->userdata('username')): ?>
+                <li>
+                  <a href="#"><i class="glyphicon glyphicon-user"></i> <?php echo $this->session->userdata('name'); ?></a>
+                </li>
+                <li>
+                  <a href="<?php echo base_url("index.php/Site/logout")?>"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+                </li>
+            <?php else: ?>
+                <li>
+                  <a href="#"><i class="glyphicon glyphicon-user"></i> <span id="server_clock"></span>Tamu</a>
+                </li>
+            <?php endif; ?>
           </ul>
         </div> <!-- /.nav-collapse -->
       </div>

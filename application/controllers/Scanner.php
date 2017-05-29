@@ -22,19 +22,26 @@ class Scanner extends CI_Controller {
  	{
  		parent::__construct();
  		$this->load->model('ScannerModel');
+ 		$this->load->model('Identity');
  		$this->load->helper('form','url_helper');
  	}
 
  	public function index()
  	{
-    $this->load->helper('form');
+    	$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('nim', 'NIM', 'required');
-		$data['status'] = "none";
+		// $data['status'] = "none";
 		$data['title'] = "Scan | ePresensi Metagama POLBAN";
-		$data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
+		//$data['query'] = $this->db->query("SELECT * FROM kehadiran,mentee WHERE kehadiran.nim = mentee.nim ORDER BY kehadiran.waktuDatang DESC LIMIT 1")->result(); //query ini hanya untuk handle tampilan awal agar tidak ada error di vscanner
  		if ($this->form_validation->run() === FALSE) {
-			$this->load->view('Scanner',$data);
+			if($this->Identity->is_admin()){
+				$data['title'] = "ePresensi Metagama POLBAN";
+				$this->load->view('Scanner',$data);
+				// redirect('Scanner');
+			}else{
+				redirect('Site');
+			}
 		}else {
 			$this->ScannerModel->set_kehadiran();
 		}
