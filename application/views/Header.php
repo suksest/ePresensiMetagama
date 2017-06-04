@@ -28,23 +28,36 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="<?echo base_url(); ?>">Home</a></li>
-            <li class="active"><a href="<?echo base_url("index.php/Scanner"); ?>">Scan</a></li>
+            <li <?php if($this->uri->segment(1)=="Home"){ echo "class='active'"; }?>><a href="<?echo base_url(); ?>"><i class="glyphicon glyphicon-home"></i> Home</a></li>
+            <?php if ($this->session->userdata('username')): ?>
+                <li <?php if($this->uri->segment(1)=="Scanner"){ echo "class='active'"; }?>> <a href="<?echo base_url("index.php/Scanner"); ?>"><i class="glyphicon glyphicon-barcode"></i> Scan</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span> Atur <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> Mentee</a></li>
+                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Kehadiran</a></li>
+                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-calendar"></span> Kegiatan</a></li>
+                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-book"></span> Penilaian</a></li>
+                    </ul>
+                </li>
+            <?php else: ?>
+                <li <?php if($this->uri->segment(1)=="Site"){ echo "class='active'"; }?>><a href="<?echo base_url("index.php/Site"); ?>"><i class="glyphicon glyphicon-lock"></i> Masuk</a></li>
+            <?php endif; ?>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li>
               <a href="#"><i class="glyphicon glyphicon-time"></i> <span id="server_clock"></span></a>
             </li>
             <?php if ($this->session->userdata('username')): ?>
-                <li>
-                  <a href="#"><i class="glyphicon glyphicon-user"></i> <?php echo $this->session->userdata('name'); ?></a>
-                </li>
-                <li>
-                  <a href="<?php echo base_url("index.php/Site/logout")?>"><i class="glyphicon glyphicon-log-out"></i> Logout</a>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo $this->session->userdata('name'); ?><span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="<?php echo base_url("index.php/Site/logout")?>"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
+                  </ul>
                 </li>
             <?php else: ?>
                 <li>
-                  <a href="#"><i class="glyphicon glyphicon-user"></i> <span id="server_clock"></span>Tamu</a>
+                  <a href="#"><i class="glyphicon glyphicon-user"></i></span>Tamu</a>
                 </li>
             <?php endif; ?>
           </ul>

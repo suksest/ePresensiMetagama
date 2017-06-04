@@ -28,7 +28,7 @@
                             <!-- <p class="help-block">Help text here.</p> -->
                         </div>
                         <div class="form-group" style="margin: 10px 1em;">
-                            <input type="submit" class="btn btn-primary btn-block" value="Sign In">
+                            <button type="submit" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-log-in"></span> Masuk</button>
                         </div>
                     </form>
                 </div>
