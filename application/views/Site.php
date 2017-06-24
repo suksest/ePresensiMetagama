@@ -4,7 +4,7 @@
         <div class="row" style="margin-top:5%;">
             <div class="col-sm-offset-4 col-sm-4">
                 <div class="login-form" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color: #1e90ff; color: #ecf0f1; padding: 1em; align-items: center;">
-                    <form class="form-horizontal" action="<?php echo base_url("index.php/Site/login")?>" method="post" role="form">
+                    <form class="form-horizontal" action="<?php echo base_url("index.php/site/login")?>" method="post" role="form">
                         <h2 class="form-signin-heading text-center">Silahkan Masuk</h2>
                         <div class="row">
                             <img class="img-responsive center-block" src="<?php echo base_url("assets/img/metag-revised-big.png"); ?>" alt="Logo Metagama POLBAN" style="max-width: 200px; max-height: 200px;">

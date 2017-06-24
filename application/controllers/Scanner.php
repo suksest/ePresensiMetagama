@@ -40,7 +40,7 @@ class Scanner extends CI_Controller {
 				$this->load->view('Scanner',$data);
 				// redirect('Scanner');
 			}else{
-				redirect('Site');
+				redirect('site');
 			}
 		}else {
 			$this->ScannerModel->set_kehadiran();

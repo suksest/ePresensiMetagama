@@ -9,7 +9,9 @@
     <meta name="author" content="">
     <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
     <link rel="stylesheet" href="<?php echo base_url("assets/css/navbar.css"); ?>" />
+    <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap-datetimepicker.min.css"); ?>" />
     <script type="text/javascript" src="<?php echo base_url("assets/js/time.js"); ?>"></script>
+    <script type="text/javascript" src="<?php echo base_url("assets/js/moment.js"); ?>"></script>
     <title><?php echo $title; ?></title>
   </head>
   <body>
@@ -36,12 +38,12 @@
                     <ul class="dropdown-menu">
                         <li class="disabled"><a href="#"><span class="glyphicon glyphicon-user"></span> Mentee</a></li>
                         <li class="disabled"><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Kehadiran</a></li>
-                        <li class="disabled"><a href="#"><span class="glyphicon glyphicon-calendar"></span> Kegiatan</a></li>
+                        <li><a href="<?php echo base_url("index.php/event");?>"><span class="glyphicon glyphicon-calendar"></span> Kegiatan</a></li>
                         <li class="disabled"><a href="#"><span class="glyphicon glyphicon-book"></span> Penilaian</a></li>
                     </ul>
                 </li>
             <?php else: ?>
-                <li <?php if($this->uri->segment(1)=="Site"){ echo "class='active'"; }?>><a href="<?echo base_url("index.php/Site"); ?>"><i class="glyphicon glyphicon-lock"></i> Masuk</a></li>
+                <li <?php if($this->uri->segment(1)=="site"){ echo "class='active'"; }?>><a href="<?echo base_url("index.php/site"); ?>"><i class="glyphicon glyphicon-lock"></i> Masuk</a></li>
             <?php endif; ?>
           </ul>
           <ul class="nav navbar-nav pull-right">
@@ -52,7 +54,7 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> <?php echo $this->session->userdata('name'); ?><span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="<?php echo base_url("index.php/Site/logout")?>"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
+                    <li><a href="<?php echo base_url("index.php/site/logout")?>"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
                   </ul>
                 </li>
             <?php else: ?>
