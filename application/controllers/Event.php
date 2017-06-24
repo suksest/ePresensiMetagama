@@ -86,14 +86,12 @@ class Event extends CI_Controller {
 		if ($this->form_validation->run() === FALSE) {
 			$this->load->view('EditEvent',$data);
 		}else {
-			$result = $this->EventModel->set_event($action,$id);
-			if ($result) {
-				redirect('event');
-			}else {
-				$data['title'] = 'Ubah Data Gagal!!';
-				$data['qEvent'] = $this->EventModel->get_event_by_id($id);
-				$this->load->view('EditEvent',$data);
-			}
+			$update = $this->EventModel->set_event($action,$id);
+      if ($update) {
+        redirect('event');
+      }else{
+        redirect('event/edit/');
+      }
 		}
 	}
 

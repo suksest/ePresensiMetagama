@@ -11,9 +11,9 @@
                     $waktuMulai = $rowEvent->waktuMulai;
                     $waktuSelesai = $rowEvent->waktuSelesai;
                 } ?>
-                <div class="login-form" style="padding: 1em;">
-                    <form class="form-horizontal" action="<?php echo base_url("index.php/event/edit/<?=$idKegiatan?>")?>" method="post" role="form">
-                        <h2 class="form-signin-heading">Ubah Kegiatan</h2>
+                <div class="event-form" style="padding: 1em;">
+                    <form class="form-horizontal" action="<?php echo base_url()?>index.php/event/edit/<?=$idKegiatan?>" method="post" role="form">
+                        <h2 class="form-event-heading">Ubah Kegiatan</h2>
                         <?php
                         echo "<div class='error_msg text-center alert-danger' style='margin: 10px 1em;'>";
                         if (isset($msg)) {
